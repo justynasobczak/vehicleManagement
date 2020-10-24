@@ -1,7 +1,29 @@
 ﻿@page "/"
+@inherits VehicleListBase
 
-<h3>VehicleList</h3>
-
-@code {
-
+<h3>Vehicle List</h3>
+@if (Vehicles == null)
+{
+    <div class="spinner"></div>
 }
+else
+{
+    <table class="table table-hover">
+        <tr>
+            <th class="text-left">Owner’s Name</th>
+            <th class="text-left">Manufacturer</th>
+            <th class="text-left">Year of Manufacture</th>
+        </tr>
+        @foreach (var vehicle in Vehicles)
+        {
+            <tr>
+                <td>@vehicle.OwnerName</td>
+                <td>@vehicle.Manufacturer</td>
+                <td>@vehicle.ManufactureYear</td>
+            </tr>
+
+        }
+
+    </table>
+}
+

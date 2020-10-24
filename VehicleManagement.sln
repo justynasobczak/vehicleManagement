@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementModels", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementWeb", "VehicleManagementWeb\VehicleManagementWeb.csproj", "{0B36D241-FC36-4CCD-8D53-2D7907AB8261}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementApi", "VehicleManagementApi\VehicleManagementApi.csproj", "{E349BD97-45E3-4FAE-B201-458F4E89824B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0B36D241-FC36-4CCD-8D53-2D7907AB8261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B36D241-FC36-4CCD-8D53-2D7907AB8261}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B36D241-FC36-4CCD-8D53-2D7907AB8261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E349BD97-45E3-4FAE-B201-458F4E89824B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E349BD97-45E3-4FAE-B201-458F4E89824B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E349BD97-45E3-4FAE-B201-458F4E89824B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E349BD97-45E3-4FAE-B201-458F4E89824B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

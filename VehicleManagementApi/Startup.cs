@@ -21,6 +21,8 @@ namespace VehicleManagementApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
         }
 

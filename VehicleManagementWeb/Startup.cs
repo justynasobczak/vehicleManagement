@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VehicleManagementWeb.Services;
 
 namespace VehicleManagementWeb
 {
@@ -27,6 +28,10 @@ namespace VehicleManagementWeb
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient<IVehicleService, VehicleService>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:65342");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

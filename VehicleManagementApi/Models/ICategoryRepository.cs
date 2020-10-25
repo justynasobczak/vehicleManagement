@@ -12,6 +12,6 @@ namespace VehicleManagementApi.Models
         Task<Category> GetCategory(int categoryId);
         Task<Category> AddCategory(Category category);
         Task<Category> UpdateCategory(Category category);
-        void DeleteCategory(int categoryId);
+        Task<Category> DeleteCategory(int categoryId);
     }
 }

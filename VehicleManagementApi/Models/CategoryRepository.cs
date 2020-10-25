@@ -21,14 +21,16 @@ namespace VehicleManagementApi.Models
             return result.Entity;
         }
 
-        public async void DeleteCategory(int categoryId)
+        public async Task<Category> DeleteCategory(int categoryId)
         {
             var dbEntry = await _appDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == categoryId);
             if (dbEntry != null)
             {
                 _appDbContext.Categories.Remove(dbEntry);
                 await _appDbContext.SaveChangesAsync();
+                return dbEntry;
             }
+            return null;
         }
 
         public async Task<IEnumerable<Category>> GetCategories()

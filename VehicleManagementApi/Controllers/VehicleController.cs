@@ -67,7 +67,51 @@ namespace VehicleManagementApi.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Problem to add data to db");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Problem to add data");
+            }
+
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Vehicle>> UpdateVehicle(int id, Vehicle vehicle)
+        {
+            try
+            {
+                if (id != vehicle.VehicleId)
+                {
+                    return BadRequest("Vehicle id mismatch");
+                }
+                var vehicleToUpdate = await _vehicleRepository.GetVehicle(id);
+                if (vehicleToUpdate == null)
+                {
+                    return NotFound($"Vehicle with id = {id} not found");
+                }
+                return await _vehicleRepository.UpdateVehicle(vehicle);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Problem to update data");
+            }
+
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Vehicle>> DeleteVehicle(int id)
+        {
+            try
+            {
+                var vehicleToDelete = await _vehicleRepository.GetVehicle(id);
+                if (vehicleToDelete == null)
+                {
+                    return NotFound($"Vehicle with id = {id} not found");
+                }
+
+                return await _vehicleRepository.DeleteVehicle(id);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Problem to date data");
             }
 
         }

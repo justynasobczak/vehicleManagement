@@ -22,14 +22,16 @@ namespace VehicleManagementApi.Models
             return result.Entity;
         }
 
-        public async void DeleteVehicle(int vehicleId)
+        public async Task<Vehicle> DeleteVehicle(int vehicleId)
         {
             var dbEntry = await _appDbContext.Vehicles.FirstOrDefaultAsync(v => v.VehicleId == vehicleId);
             if (dbEntry != null)
             {
                 _appDbContext.Vehicles.Remove(dbEntry);
                 await _appDbContext.SaveChangesAsync();
+                return dbEntry;
             }
+            return null;
 
         }
 

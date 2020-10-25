@@ -12,7 +12,7 @@ namespace VehicleManagementApi.Models
         Task<Vehicle> GetVehicle(int vehicleId);
         Task<Vehicle> AddVehicle(Vehicle vehicle);
         Task<Vehicle> UpdateVehicle(Vehicle vehicle);
-        void DeleteVehicle(int vehicleId);
+        Task<Vehicle> DeleteVehicle(int vehicleId);
 
     }
 }

@@ -6,7 +6,7 @@ using VehicleManagementModels;
 
 namespace VehicleManagementApi.Models
 {
-    interface IVehicleRepository
+    public interface IVehicleRepository
     {
         Task<IEnumerable<Vehicle>> GetVehicles();
         Task<Vehicle> GetVehicle(int vehicleId);

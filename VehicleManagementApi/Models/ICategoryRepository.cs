@@ -6,7 +6,7 @@ using VehicleManagementModels;
 
 namespace VehicleManagementApi.Models
 {
-    interface ICategoryRepository
+    public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> GetCategories();
         Task<Category> GetCategory(int categoryId);

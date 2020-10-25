@@ -9,7 +9,7 @@ namespace VehicleManagementModels
     {
         public int VehicleId { get; set; }
         public Manufacturer Manufacturer { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Owner's name should be provided")]
         public string OwnerName { get; set; }
         public int ManufactureYear { get; set; }
         public decimal Weight { get; set; }

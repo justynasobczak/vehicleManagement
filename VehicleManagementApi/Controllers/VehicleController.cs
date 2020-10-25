@@ -72,19 +72,15 @@ namespace VehicleManagementApi.Controllers
 
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<Vehicle>> UpdateVehicle(int id, Vehicle vehicle)
+        [HttpPut]
+        public async Task<ActionResult<Vehicle>> UpdateVehicle(Vehicle vehicle)
         {
             try
             {
-                if (id != vehicle.VehicleId)
-                {
-                    return BadRequest("Vehicle id mismatch");
-                }
-                var vehicleToUpdate = await _vehicleRepository.GetVehicle(id);
+                var vehicleToUpdate = await _vehicleRepository.GetVehicle(vehicle.VehicleId);
                 if (vehicleToUpdate == null)
                 {
-                    return NotFound($"Vehicle with id = {id} not found");
+                    return NotFound($"Vehicle with id = {vehicle.VehicleId} not found");
                 }
                 return await _vehicleRepository.UpdateVehicle(vehicle);
 

@@ -1,0 +1,42 @@
+﻿@page "/editvehicle/{id}"
+@page "/editvehicle"
+
+@inherits EditVehicleBase
+
+<EditForm Model="@Vehicle" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <h3>@PageHeaderText</h3>
+    <hr />
+    <div class="form-group">
+        <label for="OwnerName">Owner name</label>
+        <InputText id="OwnerName" class="form-control" placeholder="Owner name" @bind-Value="Vehicle.OwnerName" />
+        <ValidationMessage For="@(() => Vehicle.OwnerName)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Manufacturer">Manufacturer</label>
+        <InputSelect class="form-control" @bind-Value="Vehicle.Manufacturer">
+            @foreach (var manufacturer in Enum.GetValues(typeof(Manufacturer)))
+            {
+                <option value="@manufacturer">@manufacturer</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="ManufactureYear">Year of manufacture</label>
+        <InputNumber id="ManufactureYear" class="form-control" placeholder="ManufactureYear" @bind-Value="Vehicle.ManufactureYear" />
+        <ValidationMessage For="@(() => Vehicle.ManufactureYear)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Weight">Weight in kilograms</label>
+        <InputNumber id="Weight" class="form-control" placeholder="Weight" @bind-Value="Vehicle.Weight" />
+        <ValidationMessage For="@(() => Vehicle.Weight)" />
+    </div>
+
+
+
+    <button type="submit">Submit</button>
+</EditForm>
+

@@ -19,5 +19,25 @@ namespace VehicleManagementWeb.Services
         {
             return await _httpClient.GetJsonAsync<Vehicle[]>("api/vehicle");
         }
+
+        public async Task<Vehicle> GetVehicle(int id)
+        {
+            return await _httpClient.GetJsonAsync<Vehicle>($"api/vehicle/{id}");
+        }
+
+        public async Task<Vehicle> UpdateVehicle(Vehicle updatedVehicle)
+        {
+            return await _httpClient.PutJsonAsync<Vehicle>($"api/vehicle", updatedVehicle);
+        }
+
+        public async Task<Vehicle> AddVehicle(Vehicle newVehicle)
+        {
+            return await _httpClient.PostJsonAsync<Vehicle>($"api/vehicle", newVehicle);
+        }
+
+        public async Task DeleteVehicle(int id)
+        {
+            await _httpClient.DeleteAsync($"api/vehicle/{id}");
+        }
     }
 }

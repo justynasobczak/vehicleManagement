@@ -13,6 +13,7 @@ else
             <th class="text-left">Owner’s Name</th>
             <th class="text-left">Manufacturer</th>
             <th class="text-left">Year of Manufacture</th>
+            <th class="text-left">Actions</th>
         </tr>
         @foreach (var vehicle in Vehicles)
         {
@@ -20,10 +21,16 @@ else
                 <td>@vehicle.OwnerName</td>
                 <td>@vehicle.Manufacturer</td>
                 <td>@vehicle.ManufactureYear</td>
+                <td><a href="@($"editvehicle/{vehicle.VehicleId}")" class="btn btn-primary m-1">Edit</a></td>
+                <td><button class="btn btn-primary" type="button" @onclick="@((e) => Delete_Click(vehicle.VehicleId))">Delete</button></td>
             </tr>
 
         }
 
     </table>
+    <div>
+        <a href="/editvehicle" class="btn btn-secondary m-1">Add vehicle</a>
+    </div>
+
 }
 

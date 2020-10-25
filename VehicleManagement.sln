@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementModels", "VehicleManagementModels\VehicleManagementModels.csproj", "{EEE2E0DA-5867-4193-A564-7E107570631F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleManagementModels", "VehicleManagementModels\VehicleManagementModels.csproj", "{EEE2E0DA-5867-4193-A564-7E107570631F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementWeb", "VehicleManagementWeb\VehicleManagementWeb.csproj", "{0B36D241-FC36-4CCD-8D53-2D7907AB8261}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleManagementWeb", "VehicleManagementWeb\VehicleManagementWeb.csproj", "{0B36D241-FC36-4CCD-8D53-2D7907AB8261}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleManagementApi", "VehicleManagementApi\VehicleManagementApi.csproj", "{E349BD97-45E3-4FAE-B201-458F4E89824B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleManagementApi", "VehicleManagementApi\VehicleManagementApi.csproj", "{E349BD97-45E3-4FAE-B201-458F4E89824B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

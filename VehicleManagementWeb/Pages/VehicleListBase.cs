@@ -18,5 +18,10 @@ namespace VehicleManagementWeb.Pages
         {
             Vehicles = (await VehicleService.GetVehicles()).ToList();
         }
+
+        protected async Task Delete_Click(int id)
+        {
+            await VehicleService.DeleteVehicle(id);
+        }
     }
 }

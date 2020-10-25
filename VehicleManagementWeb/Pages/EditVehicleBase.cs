@@ -37,7 +37,7 @@ namespace VehicleManagementWeb.Pages
                 {
                     Manufacturer = Manufacturer.Ferrari,
                     ManufactureYear = 2020,
-                    Weight = 0.00m
+                    Weight = 1.00m
                 };
             }
         }

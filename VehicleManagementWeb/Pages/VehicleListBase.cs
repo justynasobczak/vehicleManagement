@@ -12,6 +12,9 @@ namespace VehicleManagementWeb.Pages
     {
         [Inject]
         public IVehicleService VehicleService { get; set; }
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
         public IEnumerable<Vehicle> Vehicles { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -22,6 +25,7 @@ namespace VehicleManagementWeb.Pages
         protected async Task Delete_Click(int id)
         {
             await VehicleService.DeleteVehicle(id);
+            NavigationManager.NavigateTo("/", true);
         }
     }
 }

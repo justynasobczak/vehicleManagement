@@ -30,14 +30,14 @@ namespace VehicleManagementApi.Models
                 eb.Property(c => c.Icon).IsRequired();
             });
             //Seed Category
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 1, CategoryName = "Light", WeightFrom = 0.00m, WeightUpTo = 500.00m, Icon = "Icon1" });
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 2, CategoryName = "Medium", WeightFrom = 500.00m, WeightUpTo = 2500.00m, Icon = "Icon2" });
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Heavy", WeightFrom = 2500.00m, WeightUpTo = 5000.00m, Icon = "Icon3" });
+            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 1, CategoryName = "Light", WeightFrom = 0.00m, WeightUpTo = 500.00m, Icon = "fas fa-motorcycle" });
+            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 2, CategoryName = "Medium", WeightFrom = 500.00m, WeightUpTo = 2500.00m, Icon = "fas fa-car" });
+            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Heavy", WeightFrom = 2500.00m, WeightUpTo = 100000.00m, Icon = "fas fa-truck" });
 
             //Seed Vehicle
             modelBuilder.Entity<Vehicle>().HasData(new Vehicle { VehicleId = 1, OwnerName = "Owner1", Manufacturer = Manufacturer.Ferrari, ManufactureYear = 2020, Weight = 100.00m });
-            modelBuilder.Entity<Vehicle>().HasData(new Vehicle { VehicleId = 2, OwnerName = "Owner2", Manufacturer = Manufacturer.Honda, ManufactureYear = 1998, Weight = 10.00m });
-            modelBuilder.Entity<Vehicle>().HasData(new Vehicle { VehicleId = 3, OwnerName = "Owner3", Manufacturer = Manufacturer.Toyota, ManufactureYear = 1899, Weight = 50.00m });
+            modelBuilder.Entity<Vehicle>().HasData(new Vehicle { VehicleId = 2, OwnerName = "Owner2", Manufacturer = Manufacturer.Honda, ManufactureYear = 1998, Weight = 500.00m });
+            modelBuilder.Entity<Vehicle>().HasData(new Vehicle { VehicleId = 3, OwnerName = "Owner3", Manufacturer = Manufacturer.Toyota, ManufactureYear = 1899, Weight = 5000.00m });
 
         }
     }

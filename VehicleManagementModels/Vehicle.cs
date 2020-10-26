@@ -15,7 +15,7 @@ namespace VehicleManagementModels
         [Range(1900, 2100, ErrorMessage = "Min value is 1900 max value is 2100")]
         public int ManufactureYear { get; set; }
 
-        [Range(typeof(decimal), "1", "99999,99", ErrorMessage = "Min value is 1 max value is 99999.99")]
+        [Range(typeof(decimal), "1", "99999.99", ErrorMessage = "Min value is 1 max value is 99999.99")]
         public decimal Weight { get; set; }
         [NotMapped]
         public string Icon { get; set; }

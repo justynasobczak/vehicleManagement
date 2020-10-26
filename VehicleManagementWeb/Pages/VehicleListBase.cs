@@ -17,6 +17,9 @@ namespace VehicleManagementWeb.Pages
         public NavigationManager NavigationManager { get; set; }
         public IEnumerable<Vehicle> Vehicles { get; set; }
 
+        private bool IsSortedAscending;
+        private string CurrentSortColumn;
+
         protected override async Task OnInitializedAsync()
         {
             Vehicles = (await VehicleService.GetVehicles()).ToList();
@@ -26,6 +29,31 @@ namespace VehicleManagementWeb.Pages
         {
             await VehicleService.DeleteVehicle(id);
             NavigationManager.NavigateTo("/", true);
+        }
+
+        protected void SortTable(string columnName)
+        {
+
+            if (columnName != CurrentSortColumn)
+            {
+                Vehicles = Vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                CurrentSortColumn = columnName;
+                IsSortedAscending = true;
+
+            }
+            else
+            {
+                if (IsSortedAscending)
+                {
+                    Vehicles = Vehicles.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                }
+                else
+                {
+                    Vehicles = Vehicles.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                }
+
+                IsSortedAscending = !IsSortedAscending;
+            }
         }
     }
 }

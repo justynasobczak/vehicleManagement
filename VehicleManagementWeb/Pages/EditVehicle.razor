@@ -2,6 +2,7 @@
 @page "/editvehicle"
 
 @inherits EditVehicleBase
+@using Blazorise
 
 <EditForm Model="@Vehicle" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -37,6 +38,6 @@
 
 
 
-    <button type="submit">Submit</button>
+    <Button Type="@ButtonType.Submit" Color="Color.Primary">Save</Button>
 </EditForm>
 

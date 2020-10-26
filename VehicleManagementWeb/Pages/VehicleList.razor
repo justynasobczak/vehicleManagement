@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inherits VehicleListBase
+@using Blazorise
 
 <h3>Vehicle List</h3>
 @if (Vehicles == null)
@@ -10,29 +11,32 @@ else
 {
     <table class="table table-hover">
         <tr>
-            <th class="text-left" @onclick="@((e) => SortTable("OwnerName"))">Owner’s Name</th>
-            <th class="text-left" @onclick="@((e) => SortTable("Manufacturer"))">Manufacturer</th>
-            <th class="text-left" @onclick="@((e) => SortTable("ManufactureYear"))">Year of Manufacture</th>
+            <th class="text-left sortable" @onclick="@((e) => SortTable("OwnerName"))">Owner’s Name</th>
+            <th class="text-left sortable" @onclick="@((e) => SortTable("Manufacturer"))">Manufacturer</th>
+            <th class="text-left sortable" @onclick="@((e) => SortTable("ManufactureYear"))">Year of Manufacture</th>
             <th class="text-left">Icon</th>
             <th class="text-left">Actions</th>
         </tr>
         @foreach (var vehicle in Vehicles)
         {
-    <tr>
-        <td>@vehicle.OwnerName</td>
-        <td>@vehicle.Manufacturer</td>
-        <td>@vehicle.ManufactureYear</td>
-        <td>@vehicle.Icon</td>
-        <td><a href="@($"editvehicle/{vehicle.VehicleId}")" class="btn btn-primary m-1">Edit</a></td>
-        <td><button class="btn btn-primary" type="button" @onclick="@((e) => Delete_Click(vehicle.VehicleId))">Delete</button></td>
-    </tr>
-
+            <tr>
+                <td>@vehicle.OwnerName</td>
+                <td>@vehicle.Manufacturer</td>
+                <td>@vehicle.ManufactureYear</td>
+                <td>
+                    <span
+                        class="@vehicle.Icon">
+                    </span>
+                </td>
+                <td>
+                    <Button @onclick="@((e) => OnEditVehicle(vehicle.VehicleId))" Color="Color.Secondary">Edit</Button>
+                    <Button @onclick="@((e) => OnDeleteVehicle(vehicle.VehicleId))" Color="Color.Danger">Delete</Button>
+                </td>
+            </tr>
         }
 
     </table>
     <div>
-        <a href="/editvehicle" class="btn btn-secondary m-1">Add vehicle</a>
+        <Button @onclick="OnAddVehicle" Color="Color.Primary">Add vehicle</Button>
     </div>
-
 }
-

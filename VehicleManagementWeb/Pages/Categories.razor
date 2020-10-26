@@ -1,0 +1,92 @@
+@page "/categories"
+@inherits VehicleManagementWeb.Pages.CategoriesBase
+@using Blazorise
+
+<h3>Categories</h3>
+
+@if (Categories != null)
+{
+    <EditForm Model="@Categories" OnSubmit="OnSubmit">
+        <ObjectGraphDataAnnotationsValidator/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Weight from</th>
+                    <th>Weight up to</th>
+                    <th>Icon</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @for (var index = 0; index < Categories.Count; index++)
+            {
+                var category = Categories[index];
+                var captureIndex = index;
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <InputText class="form-control" TValue="string" Value="@category.CategoryName"
+                                       ValueExpression="@(() => category.CategoryName)"
+                                       ValueChanged="@((string value) => OnChangeCategoryName(value, category))"/>
+                            <ValidationMessage For="@(() => category.CategoryName)"/>
+                        </div>
+                    </td>
+                    <td>
+                        @if (index == 0)
+                        {
+                            <span>@category.WeightFrom</span>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <InputNumber class="form-control" TValue="decimal" Value="@category.WeightFrom" ValueExpression="@(() => category.WeightFrom)"
+                                             ValueChanged="@((decimal value) => OnChangeWeightFrom(value, captureIndex))"/>
+                                <ValidationMessage For="@(() => category.WeightFrom)"/>
+                            </div>
+                        }
+                        @if (category.WeightFrom == category.WeightUpTo)
+                        {
+                            <div style="color: red;">Weight range is too narrow</div>
+                        }
+                    </td>
+                    <td>
+                        @category.WeightUpTo
+                    </td>
+                    <td>
+                        <Dropdown @bind-Value="category.Icon">
+                            <DropdownToggle>
+                                <span class="@category.Icon"></span>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                @foreach (var icon in Icons)
+                                {
+                                    var icon_ = icon;
+                                    <Blazorise.DropdownItem Value="@icon" @onclick="@((e) => OnSelectIcon(e, icon_, category))">
+                                        <span
+                                            class="@icon">
+                                        </span>
+                                    </Blazorise.DropdownItem>
+                                }
+                            </DropdownMenu>
+                        </Dropdown>
+                        <ValidationMessage For="@(() => category.Icon)"/>
+                    </td>
+                    <td>
+                        @if (index == Categories.Count - 1)
+                        {
+                            <Button @onclick="OnAdd" Color="Color.Secondary">Add</Button>
+                            @if (index != 0)
+                            {
+                                <Button @onclick="@((e) => OnRemove(e, captureIndex, category.CategoryId))" Color="Color.Danger">Remove</Button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <Button Type="@ButtonType.Submit" Disabled="@(!IsModified)" Color="Color.Primary">Save</Button>
+
+    </EditForm>
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using VehicleManagementModels;
 
 namespace VehicleManagementApi.Models
@@ -10,6 +11,7 @@ namespace VehicleManagementApi.Models
     public class VehicleRepository : IVehicleRepository
     {
         private readonly AppDbContext _appDbContext;
+
         public VehicleRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -31,8 +33,8 @@ namespace VehicleManagementApi.Models
                 await _appDbContext.SaveChangesAsync();
                 return dbEntry;
             }
-            return null;
 
+            return null;
         }
 
         public async Task<Vehicle> GetVehicle(int vehicleId)
@@ -42,12 +44,21 @@ namespace VehicleManagementApi.Models
 
         public async Task<IEnumerable<Vehicle>> GetVehicles()
         {
-            var result = await _appDbContext.Vehicles.ToListAsync();
-            foreach (var item in result)
-            {
-                item.Icon = GetIconForVehicle(item);
-            }
-            return result;
+            var query = from vehicle in _appDbContext.Vehicles
+                let category = (
+                    from category in _appDbContext.Categories
+                    where category.WeightFrom <= vehicle.Weight && category.WeightUpTo > vehicle.Weight
+                    select category).FirstOrDefault()
+                select new {vehicle, category};
+            var result = await query.ToListAsync();
+            
+            return
+                result.Select(pair =>
+                {
+                    var vehicle = pair.vehicle;
+                    vehicle.Icon = pair.category?.Icon;
+                    return vehicle;
+                });
         }
 
         public async Task<Vehicle> UpdateVehicle(Vehicle vehicle)
@@ -63,6 +74,7 @@ namespace VehicleManagementApi.Models
                 await _appDbContext.SaveChangesAsync();
                 return dbEntry;
             }
+
             return null;
         }
 
@@ -76,6 +88,7 @@ namespace VehicleManagementApi.Models
             {
                 return result;
             }
+
             return "out of range";
         }
     }

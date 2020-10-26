@@ -42,7 +42,12 @@ namespace VehicleManagementApi.Models
 
         public async Task<IEnumerable<Vehicle>> GetVehicles()
         {
-            return await _appDbContext.Vehicles.ToListAsync();
+            var result = await _appDbContext.Vehicles.ToListAsync();
+            foreach (var item in result)
+            {
+                item.Icon = GetIconForVehicle(item);
+            }
+            return result;
         }
 
         public async Task<Vehicle> UpdateVehicle(Vehicle vehicle)
@@ -59,6 +64,19 @@ namespace VehicleManagementApi.Models
                 return dbEntry;
             }
             return null;
+        }
+
+        private string GetIconForVehicle(Vehicle vehicle)
+        {
+            var result = _appDbContext.Categories
+                .Where(c => (c.WeightFrom <= vehicle.Weight) && (c.WeightUpTo > vehicle.Weight))
+                .Select(c => c.Icon)
+                .FirstOrDefault();
+            if (result != null)
+            {
+                return result;
+            }
+            return "out of range";
         }
     }
 }

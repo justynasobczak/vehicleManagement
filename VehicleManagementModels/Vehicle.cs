@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace VehicleManagementModels
@@ -16,5 +17,7 @@ namespace VehicleManagementModels
 
         [Range(typeof(decimal), "1", "1000000", ErrorMessage = "Min value is 1 max value is 999999.99")]
         public decimal Weight { get; set; }
+        [NotMapped]
+        public string Icon { get; set; }
     }
 }
